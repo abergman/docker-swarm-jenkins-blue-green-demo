@@ -1,0 +1,2 @@
+FROM matriphe/alpine-php:fpm
+COPY app/index.php /www/index.php

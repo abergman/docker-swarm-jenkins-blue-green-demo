@@ -1,0 +1,11 @@
+fpm:
+  build: .
+  dockerfile: Dockerfile_fpm
+
+nginx:
+  build: .
+  dockerfile: Dockerfile_nginx
+  links:
+   - fpm
+  ports:
+   - "80:80"
