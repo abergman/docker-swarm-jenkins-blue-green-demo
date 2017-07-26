@@ -15,9 +15,13 @@ pipeline {
 	}
 	stage('Build docker image') {
             steps {
-                sh 'docker node ls'
+                sh 'docker-compose build'
             }
-	
+        }
+	stage('Publish images to registry') {
+            steps {
+                sh 'docker images'
+            }
         }
     }
 }
