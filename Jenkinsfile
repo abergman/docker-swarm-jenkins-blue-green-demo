@@ -1,6 +1,7 @@
 #!groovy
 
 pipeline{
+	agent any
         environment{
 
 		 MACHINE_DRIVER = credentials('glesys_docker_driver')
@@ -8,7 +9,7 @@ pipeline{
         }
 }
 
-node(){
+stages{
 	stage('Checkout source'){
 		checkout scm
 
