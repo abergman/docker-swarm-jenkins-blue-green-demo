@@ -21,6 +21,10 @@ pipeline {
 	stage('Publish images to registry') {
             steps {
                 sh 'docker images'
+		sh 'docker tag deploymyapp_nginx:latest localhost:5000/deploymyapp_nginx'
+		sh 'docker tag deploymyapp_fpm:latest localhost:5000/deploymyapp_fpm'
+		sh 'docker push localhost:5000/deploymyapp_nginx'
+		sh 'docker push localhost:5000/deploymyapp_fpm'
             }
         }
     }
