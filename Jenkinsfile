@@ -11,12 +11,12 @@ pipeline{
 
 stages{
 	stage('Checkout source'){
-		steps{
+	steps{
 			checkout scm
 		 }	
 	}
 	stage('Build docker image'){		
-		steps{
+	steps{
 			//Build
 		 }
 	}
