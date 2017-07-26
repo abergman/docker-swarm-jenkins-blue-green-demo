@@ -15,8 +15,7 @@ stages{
 			checkout scm
 		 }	
 	}
-	stage('Build docker image'){
-		
+	stage('Build docker image'){		
 		steps{
 			//Build
 		 }
