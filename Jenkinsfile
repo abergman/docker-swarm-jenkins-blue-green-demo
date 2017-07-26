@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         MACHINE_DRIVER = credentials('glesys_docker_driver')
-	MACHINE_STORAGE_PATH credentials('MACHINE_STORAGE_PATH') 
+	MACHINE_STORAGE_PATH = credentials('MACHINE_STORAGE_PATH') 
     }
     stages {
         stage('Show workspace') {
