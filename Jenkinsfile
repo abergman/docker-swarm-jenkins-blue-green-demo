@@ -1,6 +1,9 @@
 #!groovy
 
-stage 'build'
-//build
-stage 'test'
+
+stage 'Checkout source'
+
+	checkout scm
+
+stage 'Build docker image'
 //test
