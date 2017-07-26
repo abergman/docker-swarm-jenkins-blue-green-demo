@@ -7,7 +7,7 @@ pipeline{
 		 MACHINE_DRIVER = credentials('glesys_docker_driver')
 
         }
-}
+
 
 stages{
 	stage('Checkout source'){
@@ -19,3 +19,4 @@ stages{
 	}
 
  }
+}
