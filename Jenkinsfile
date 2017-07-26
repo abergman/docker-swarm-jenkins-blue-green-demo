@@ -5,10 +5,12 @@ pipeline {
             steps {
                 ls
             }
+	}
 	stage('Example') {
             steps {
                 echo 'Hello World'
             }
+	
         }
     }
 }
