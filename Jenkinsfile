@@ -1,7 +1,8 @@
 pipeline {
     agent any
     environment {
-        MACHINE_DRIVER = credentials('glesys_docker_driver') 
+        MACHINE_DRIVER = credentials('glesys_docker_driver')
+	MACHINE_STORAGE_PATH credentials('MACHINE_STORAGE_PATH') 
     }
     stages {
         stage('Show workspace') {
@@ -11,7 +12,7 @@ pipeline {
 	}
 	stage('Build docker image') {
             steps {
-                echo "$MACHINE_DRIVER"
+                sh 'docker-machine ls'
             }
 	
         }
