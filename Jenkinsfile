@@ -1,7 +1,11 @@
 pipeline {
     agent any
     stages {
-        stage('Example') {
+        stage('Show workspace') {
+            steps {
+                ls
+            }
+	stage('Example') {
             steps {
                 echo 'Hello World'
             }
