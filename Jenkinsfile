@@ -27,5 +27,13 @@ pipeline {
 		sh 'docker push registry.dontping.me:5000/deploymyapp_fpm'
             }
         }
+	stage('Deploy blue services to Swarm') {
+           steps {
+                sh 'docker deploy --compose-file docker-compose.yml MyApp'
+            }
+        }
+
+
+
     }
 }
