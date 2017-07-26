@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Show workspace') {
             steps {
-                ls
+                sh 'ls -la'
             }
 	}
 	stage('Example') {
