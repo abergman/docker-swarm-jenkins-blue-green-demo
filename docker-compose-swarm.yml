@@ -1,0 +1,7 @@
+services:
+
+  fpm:
+    image: registry.dontping.me/Dockerfile_fpm:latest
+    deploy:
+      placement:
+        constraints: [node.role == worker]
