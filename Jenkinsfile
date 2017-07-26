@@ -29,7 +29,7 @@ pipeline {
         }
 	stage('Deploy blue services to Swarm') {
            steps {
-                sh 'docker deploy --compose-file docker-compose.yml MyApp'
+                sh 'docker-compose -f docker-compose-swarm.yml -d'
             }
         }
 
