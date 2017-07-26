@@ -12,9 +12,7 @@ pipeline {
 	}
 	stage('Build docker image') {
             steps {
-                sh 'docker-machine ls\
-		eval $(docker-machine env manager1)\
-		docker node ls'
+                sh 'eval $(docker-machine env manager1) && docker node ls'
             }
 	
         }
