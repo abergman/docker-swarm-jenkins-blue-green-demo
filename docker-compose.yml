@@ -1,5 +1,3 @@
-services:
-
   fpm:
     build: .
     dockerfile: Dockerfile_fpm
