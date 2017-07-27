@@ -5,3 +5,13 @@ services:
     deploy:
       placement:
         constraints: [node.role == worker]
+
+  nginx:
+    image: registry.dontping.me:5000/deploymyapp_nginx
+    links:
+     - fpm
+    ports:
+     - "80:80"
+    deploy:
+      placement:
+        constraints: [node.role == worker]
