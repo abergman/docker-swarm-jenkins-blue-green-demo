@@ -35,8 +35,16 @@ pipeline {
                 sh 'docker stack deploy --compose-file docker-compose-swarm.yml MyAppBlue'
             }
         }
-
-
-
+        stage('Approve build and deploy to Green') {
+	    input "Approve Blue build?"
+        }
+	stage('Deploy Green services to Swarm') {
+           environment {
+               STACK = "GREEN"
+           }
+           steps {
+                sh 'docker stack deploy --compose-file docker-compose-swarm-green.yml MyAppGreen'
+            }
+        }	
     }
 }
