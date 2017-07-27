@@ -28,6 +28,9 @@ pipeline {
             }
         }
 	stage('Deploy blue services to Swarm') {
+           environment {
+               STACK = "BLUE" 
+           }
            steps {
                 sh 'docker stack deploy --compose-file docker-compose-swarm.yml MyAppBlue'
             }
