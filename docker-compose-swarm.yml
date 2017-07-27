@@ -3,15 +3,15 @@ services:
   fpm:
     image: registry.dontping.me:5000/deploymyapp_fpm
     deploy:
+      replicas: 3
       placement:
         constraints: [node.role == worker]
 
   nginx:
     image: registry.dontping.me:5000/deploymyapp_nginx
-    links:
-     - fpm
     ports:
      - "80:80"
     deploy:
+      replicas: 3
       placement:
         constraints: [node.role == worker]
