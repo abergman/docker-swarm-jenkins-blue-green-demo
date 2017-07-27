@@ -36,7 +36,9 @@ pipeline {
             }
         }
         stage('Approve build and deploy to Green') {
-	    input "Approve Blue build?"
+            steps {	    
+                input "Approve Blue build?"
+            }
         }
 	stage('Deploy Green services to Swarm') {
            environment {
