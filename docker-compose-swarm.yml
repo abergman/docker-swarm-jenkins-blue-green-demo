@@ -2,6 +2,8 @@ version: "3"
 services:
   fpm:
     image: registry.dontping.me:5000/deploymyapp_fpm
+    environment:
+    - STACK
     deploy:
       replicas: 3
       placement:
@@ -9,6 +11,8 @@ services:
 
   nginx:
     image: registry.dontping.me:5000/deploymyapp_nginx
+    environment:
+    - STACK
     ports:
      - "80:80"
     deploy:
