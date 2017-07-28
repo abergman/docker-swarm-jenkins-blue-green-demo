@@ -27,7 +27,12 @@ pipeline {
 		sh 'docker push registry.dontping.me:5000/deploymyapp_fpm'
             }
         }
-	stage('Deploy blue services to Swarm') {
+        stage('Prepare loadbalancer and reduce traffic levels to BLUE services') {
+           steps {
+                sh 'ls -la'
+            }
+        }
+	stage('Deploy BLUE services to Swarm') {
            environment {
                STACK = "BLUE" 
            }
@@ -35,12 +40,12 @@ pipeline {
                 sh 'docker stack deploy --compose-file docker-compose-swarm.yml MyAppBlue'
             }
         }
-        stage('Approve build and deploy to Green') {
+        stage('Approve build and deploy to GREEN') {
             steps {	    
                 input "Approve Blue build?"
             }
         }
-	stage('Deploy Green services to Swarm') {
+	stage('Deploy GREEN services to Swarm') {
            environment {
                STACK = "GREEN"
            }
