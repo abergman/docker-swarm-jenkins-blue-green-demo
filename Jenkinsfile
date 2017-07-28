@@ -32,9 +32,10 @@ pipeline {
         stage('Prepare loadbalancer and reduce traffic levels to BLUE services') {
            steps {
                 sh '''TARGETS=$(curl -s -X POST --data-urlencode "loadbalancerid=$LOADBALANCER" -k --basic -u $PROJECT_USR:$PROJECT_PSW https://api.glesys.com/loadbalancer/details/format/json | jq -r '.response.loadbalancer.backends[].targets[] | select(.port==81) | [.name] | @tsv') \
-		   for TARGET in $TARGETS; do \
-                   echo "Target: $TARGET" \
-                   curl -s -X POST --data-urlencode "loadbalancerid=$LOADBALANCER" --data-urlencode "backendname=be5979dd85c2c41" --data-urlencode "targetname=$TARGET" --data-urlencode "weight=10" -k --basic -u $PROJECT_USR:$PROJECT_PSW https://api.glesys.com/loadbalancer/edittarget/ \
+
+		   for TARGET1 in $TARGETS; do \
+                   echo "Target: $TARGET1" \
+                   curl -s -X POST --data-urlencode "loadbalancerid=$LOADBALANCER" --data-urlencode "backendname=be5979dd85c2c41" --data-urlencode "targetname=$TARGET1" --data-urlencode "weight=10" -k --basic -u $PROJECT_USR:$PROJECT_PSW https://api.glesys.com/loadbalancer/edittarget/ \
                    done'''
             }
         }
