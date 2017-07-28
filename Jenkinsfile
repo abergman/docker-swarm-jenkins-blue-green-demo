@@ -50,14 +50,16 @@ pipeline {
                 input "Approve Blue build?"
             }
         }
-	stage('Restore traffic levels to BLUE services') {
+        stage('Restore traffic levels to BLUE services') {
            steps {
-                sh '''TARGETS=$(curl -s -X POST --data-urlencode "loadbalancerid=$LOADBALANCER" -k --basic -u $PROJECT_USR:$PROJECT_PSW https://api.glesys.com/loadbalancer/details/format/json | jq -r '.r$
+                sh '''TARGETS=$(curl -s -X POST --data-urlencode "loadbalancerid=$LOADBALANCER" -k --basic -u $PROJECT_USR:$PROJECT_PSW https://api.glesys.com/loadbalancer/details/format/json | jq -r '.response.loadbalancer.backends[].targets[] | select(.port==81) | [.name] | @tsv') \
 
                    for TARGET1 in $TARGETS; do \
-                   curl -s -X POST --data-urlencode "loadbalancerid=$LOADBALANCER" --data-urlencode "backendname=be5979dd85c2c41" --data-urlencode "targetname=$TARGET1" --data-urlencode "weight=1" -k --$
+                   curl -s -X POST --data-urlencode "loadbalancerid=$LOADBALANCER" --data-urlencode "backendname=be5979dd85c2c41" --data-urlencode "targetname=$TARGET1" --data-urlencode "weight=10" -k --basic -u $PROJECT_USR:$PROJECT_PSW https://api.glesys.com/loadbalancer/edittarget/; done'''
             }
         }
+
+
 	stage('Deploy GREEN services to Swarm') {
            environment {
                STACK = "GREEN"
